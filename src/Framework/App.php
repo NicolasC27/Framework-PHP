@@ -26,12 +26,18 @@ class App
      * App constructor.
      * List modules to load
      * @param array $modules
+     * @param array $dependancies
      */
-    public function __construct(array $modules = [])
+    public function __construct(array $modules = [],
+                                array $dependancies = [])
     {
         $this->router = new Router();
+        if (array_key_exists('renderer', $dependancies)) {
+            $dependancies['renderer']->addGlobal('router', $this->router);
+        }
         foreach ($modules as $module) {
-            $this->modules[] = new $module($this->router);
+            $this->modules[] = new $module($this->router,
+                $dependancies['renderer']);
         }
     }
 
@@ -40,7 +46,7 @@ class App
      * @return ResponseInterface
      * @throws \Exception
      */
-    public function run(ServerRequestInterface $request) : ResponseInterface
+    public function run(ServerRequestInterface $request): ResponseInterface
     {
         $uri = $request->getUri()->getPath();
         if (!empty($uri) && $uri[strlen($uri) - 1] === '/') {
@@ -66,7 +72,8 @@ class App
         } elseif ($response instanceof ResponseInterface) {
             return $response;
         } else {
-            throw new \Exception('The response is not a string or an instance of ResponseInterface');
+            throw new \Exception('The response is not a string or an instance 
+            of ResponseInterface');
         }
     }
 }

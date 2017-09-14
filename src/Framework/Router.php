@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: kitephx
+ * User: Nicolas
  * Date: 9/12/17
  * Time: 10:36 PM
  */
@@ -59,8 +59,16 @@ class Router
         return null;
     }
 
+    /**
+     * Generate URI
+     * @param string $name
+     * @param array $params
+     * @return string
+     */
     public function generateUri(string $name, array $params) : string
     {
         return $this->router->generateUri($name, $params);
     }
+
+
 }
