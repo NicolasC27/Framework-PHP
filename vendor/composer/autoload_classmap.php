@@ -463,7 +463,7 @@ return array(
     'SebastianBergmann\\CodeCoverage\\Report\\Html\\Directory' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Html/Renderer/Directory.php',
     'SebastianBergmann\\CodeCoverage\\Report\\Html\\Facade' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Html/Facade.php',
     'SebastianBergmann\\CodeCoverage\\Report\\Html\\File' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Html/Renderer/File.php',
-    'SebastianBergmann\\CodeCoverage\\Report\\Html\\Renderer' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Html/Renderer.php',
+    'SebastianBergmann\\CodeCoverage\\Report\\Html\\Renderer' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Html/PHPRenderer.php',
     'SebastianBergmann\\CodeCoverage\\Report\\PHP' => $vendorDir . '/phpunit/php-code-coverage/src/Report/PHP.php',
     'SebastianBergmann\\CodeCoverage\\Report\\Text' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Text.php',
     'SebastianBergmann\\CodeCoverage\\Report\\Xml\\BuildInformation' => $vendorDir . '/phpunit/php-code-coverage/src/Report/Xml/BuildInformation.php',

@@ -10,6 +10,8 @@ return array(
     'Zend\\Stdlib\\' => array($vendorDir . '/zendframework/zend-stdlib/src'),
     'Zend\\Expressive\\Router\\' => array($vendorDir . '/zendframework/zend-expressive-router/src', $vendorDir . '/zendframework/zend-expressive-fastroute/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Interop\\Http\\ServerMiddleware\\' => array($vendorDir . '/http-interop/http-middleware/src'),
