@@ -6,41 +6,27 @@
  * Date: 13/09/2017
  * Time: 23:46
  */
-
 namespace App\Modules\Blog;
 
+use App\Modules\Blog\Actions\BlogAction;
 use Framework\Renderer\RendererInterface;
+use Framework\Module;
 use Framework\Router;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 
-class BlogModule
+class BlogModule extends Module
 {
-    private $renderer;
+    const DEFINITIONS = __DIR__ . '/config.php';
 
     /**
      * BlogModule constructor.
+     * @param string $prefix
      * @param Router $router
-     * @param Renderer $renderer
+     * @param RendererInterface $renderer
      */
-    public function __construct(Router $router, RendererInterface $renderer)
+    public function __construct(string $prefix, Router $router, RendererInterface $renderer)
     {
-        $this->renderer = $renderer;
-        $this->renderer->addPath('blog', __DIR__ . '/views');
-        $router->get('/blog', [$this, 'index'], 'blog.index');
-        $router->get('/blog/{slug:[a-z\-]+}', [$this, 'show'], 'blog.show');
-    }
-
-    public function index(Request $request): string
-    {
-        return $this->renderer->render('@blog/index');
-    }
-
-    public function show(Request $request): string
-    {
-        return $this->renderer->render('@blog/show', [
-            'slug' => $request->getAttributes('slug')
-        ]);
-    }
+        $renderer->addPath('blog', __DIR__ . '/views');
+        $router->get($prefix, BlogAction::class, 'blog.index');
+        $router->get($prefix . '/{slug:[a-z\-0-9]+}', BlogAction::class, 'blog.show');    }
 
 }

@@ -8,6 +8,7 @@
 namespace Framework;
 
 use GuzzleHttp\Psr7\Response;
+use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -16,28 +17,24 @@ class App
 
     private $modules = [];
 
-    /**
+    /*
      * Router
-     * @var Router
+     * @var ContainerInterface
      */
-    private $router;
+    private $container;
 
     /**
      * App constructor.
      * List modules to load
+     * @param ContainerInterface $container
      * @param array $modules
-     * @param array $dependancies
+     * @internal param array $dependancies
      */
-    public function __construct(array $modules = [],
-                                array $dependancies = [])
+    public function __construct(ContainerInterface $container, array $modules = [])
     {
-        $this->router = new Router();
-        if (array_key_exists('renderer', $dependancies)) {
-            $dependancies['renderer']->addGlobal('router', $this->router);
-        }
+        $this->container = $container;
         foreach ($modules as $module) {
-            $this->modules[] = new $module($this->router,
-                $dependancies['renderer']);
+            $this->modules[] = $container->get($module);
         }
     }
 
@@ -55,18 +52,23 @@ class App
                 ->withHeader('Location', substr($uri, 0, strlen($uri) - 1));
         }
 
-        $route = $this->router->match($request);
+        $route = $this->container->get(Router::class)->match($request);
         if (is_null($route)) {
             return new Response(404, [], '<h1>Erreur 404</h1>');
         }
 
         $params = $route->getParams();
+
         $request = array_reduce(array_keys($params), function ($request, $key) use ($params) {
             return $request->withAttribute($key, $params[$key]);
         }, $request);
 
-        $response = call_user_func_array($route->getCallback(), [$request]);
+        $callback = $route->getCallback();
 
+        if (is_string($callback))
+            $callback = $this->container->get($callback);
+
+        $response = call_user_func_array($callback, [$request]);
         if (is_string($response)) {
             return new Response(200, [], $response);
         } elseif ($response instanceof ResponseInterface) {
