@@ -78,4 +78,13 @@ class App
             of ResponseInterface');
         }
     }
+
+    /**
+     * @return ContainerInterface
+     */
+    public function getContainer(): ContainerInterface
+    {
+        return $this->container;
+    }
+
 }

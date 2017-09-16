@@ -6,6 +6,10 @@ use Framework\Router;
 use Framework\Router\RouterTwigExtension;
 
 return [
+    'database.host' => 'localhost',
+    'database.username' => 'root',
+    'database.password' => 'uen9&r^^',
+    'database.name' => 'Framework',
     'views.path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views',
     'twig.extensions' => [
         \DI\get(RouterTwigExtension::class)
