@@ -1,0 +1,27 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+    <h1>Welcome on the add students</h1>
+
+    <form action="{{ path('student.add') }}" method="post">
+        <p>Name : <input type="text" name="name" required="required" pattern="[A-Za-z]{3,10}"></p>
+        <p>Email Address : <input type="email" name="email" required="required"/></p>
+        <p>School :
+        <select class="test" name="school[]" multiple="multiple" required>
+            {% for school in schools %}
+                <option value="{{ school.id }}">{{ school.name }}</option>
+            {% endfor %}
+        </select></p>
+        <p><input type="submit" value="OK"></p>
+    </form>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.test').select2();
+        });
+    </script>
+
+
+{% endblock %}
