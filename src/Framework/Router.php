@@ -42,6 +42,11 @@ class Router
         $this->router->addRoute(new ZendRoute($path, $callable, ['GET'], $name));
     }
 
+    public function post(string $path, $callable, ?string $name = null)
+    {
+        $this->router->addRoute(new ZendRoute($path, $callable, ['POST'], $name));
+    }
+
     /**
      * @param ServerRequestInterface $request
      * @return Route|null
