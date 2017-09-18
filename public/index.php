@@ -9,7 +9,8 @@
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 $modules = [
-    \App\Modules\Blog\BlogModule::class
+    \App\Modules\Blog\BlogModule::class,
+    \App\Modules\Student\StudentModule::class
 ];
 
 $builder = new \DI\ContainerBuilder();
