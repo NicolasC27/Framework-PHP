@@ -21,12 +21,19 @@ class BlogAction
     private $renderer;
 
     /**
-     * BlogAction constructor.
-     * @param RendererInterface $renderer
+     * @var \PDO
      */
-    public function __construct(RendererInterface $renderer)
+    private $pdo;
+
+    /**
+     * StudentAction constructor.
+     * @param RendererInterface $renderer
+     * @param \PDO $pdo
+     */
+    public function __construct(RendererInterface $renderer, \PDO $pdo)
     {
         $this->renderer = $renderer;
+        $this->pdo = $pdo;
     }
 
     public function __invoke(Request $request)
@@ -38,7 +45,7 @@ class BlogAction
     public function index(): string
     {
 
-        return $this->renderer->render('@blog/index');
+        return $this->renderer->render('@blog/index', compact('student'));
     }
 
     public function show(string $slug): string
