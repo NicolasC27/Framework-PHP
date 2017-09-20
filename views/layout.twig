@@ -2,10 +2,15 @@
 <html>
 <head>
     <title>Framework PHP</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
-          integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+          integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
+          crossorigin="anonymous">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    {% block css %}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"
+              rel="stylesheet"/>
+    {% endblock %}
     <script
             src="https://code.jquery.com/jquery-3.2.1.js"
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -29,6 +34,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('student.index') }}">Student</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('calendar.index') }}">Calendar</a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -38,6 +46,6 @@
 
 
 <div class="container">
-{% block body%}
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 </div>
