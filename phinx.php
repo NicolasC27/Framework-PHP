@@ -21,7 +21,6 @@ return [
         'default_database' => 'development',
         'development'      => [
             'adapter' => 'mysql',
-	    'unix_socket' => '/opt/lamp/var/mysql/mysql.sock',
             'host' => $app->getContainer()->get('database.host'),
             'name' => $app->getContainer()->get('database.name'),
             'user' => $app->getContainer()->get('database.username'),
