@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
 return [
     'database.host' => 'localhost',
     'database.username' => 'root',
-    'database.password' => 'uen9&r^^',
+    'database.password' => '',
     'database.name' => 'Framework',
     'views.path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views',
     'twig.extensions' => [
