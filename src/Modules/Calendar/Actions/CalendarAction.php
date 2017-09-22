@@ -50,6 +50,12 @@ class CalendarAction
 
     public function index(): string
     {
-        return $this->renderer->render('@calendar/index');
+        $data = array(
+            array('start' =>  30, 'end' => 90),
+            array('start' => 540, 'end' => 600),
+            array('start' => 560, 'end' => 620),
+            array('start' => 610, 'end' => 670),
+        );
+        return $this->renderer->render('@calendar/index', compact(data));
     }
 }

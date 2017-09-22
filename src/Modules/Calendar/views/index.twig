@@ -37,6 +37,10 @@
             <li>8:30</li>
             <li>9:00<span>PM</span></li>
         </ul>
-        <div class="events-container"></div>
+        <div class="events-container">
+            {% for datas in data %}
+                <div class="event" style="top: 50.0347%; height: 4.16956%; left: 35%; width: 65%;">Meeting</div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
